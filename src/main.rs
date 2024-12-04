@@ -8,15 +8,27 @@ fn main() {
     println!("Little Timmy is nice >> {}", is_nice(10, 1));
 }
 
-pub fn is_nice(good_deeds: u32, bad_deeds: u32) -> bool {
-    let gdw = good_deeds as f64 * GOOD_WEIGHT as f64;
-    let bdw = bad_deeds as f64 * BAD_WEIGHT as f64;
+#[derive(Debug, PartialEq)] // needed for tests
+pub enum Niceness {
+    // Create the enum variants `Nice` and `Naughty`
+    // Variant `Nice` is a tuple struct that holds the number of good deeds
+}
 
-    let ratio = gdw / (gdw + bdw);
+pub struct Kid {
+    // Add a field `name` of type `String`
+    // and `niceness` field of type `Niceness`
+    // Make all fields public
+}
+
+pub fn is_nice(good_deeds: u32, bad_deeds: u32) -> bool {
+    let good_deeds = good_deeds as f32 * GOOD_WEIGHT;
+    let bad_deeds = bad_deeds as f32 * BAD_WEIGHT;
+
+    let ratio = good_deeds / (good_deeds + bad_deeds);
     if ratio >= 0.75 {
-        return true
+        return true;
     } else {
-        return false
+        return false;
     }
 }
 
